@@ -1,21 +1,51 @@
-import React, {useState} from 'react';
-import {Text, StyleSheet, TextInput, View, Button, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, TextInput, View, Image} from 'react-native';
+import {Input, Button, Text} from 'react-native-elements';
+import {auth} from '../firebase';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        navigation.replace("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, [])
+
+  const register = () => {
+    if (name === '' || email === '' || password === ''){
+        alert('Please Fill All The Fields!');
+        setName('');
+        setPassword('');
+        setEmail('');
+    } else {
+      navigation.navigate('Sign Up');
+      setName('');
+      setPassword('');
+      setEmail('');
+    }
+  }
 
   return (
     <View style={styles.container}>
-        <Image />
-        <TextInput style={styles.input} value={name} autofocus placeholder='  Username' />
-        <TextInput style={styles.input} value={email} placeholder='  E-Mail' />
-        <TextInput style={styles.input} value={imageUrl} placeholder='  Image URL For Profile' />
-        <View style={{margin: 50}} />
+        <Text h2 style={{color: 'cadetblue'}}>
+          Welcome To Connect!
+        </Text>
+        <View style={{paddingTop: 20}} />
+        <Input style={styles.input} value={name} type="text" autofocus placeholder='Username' onChangeText={(text) => setName(text)} />
+        <Input style={styles.input} value={email} type="email" placeholder='E-Mail' onChangeText={(text) => setEmail(text)} />
+        <Input style={styles.input} value={password} type="password" secureTextEntry placeholder='Password' onChangeText={(text) => setPassword(text)} />
+        <View style={{margin: 30}} />
         <Button title="Login" />
         <View style={{margin: 10}} />
-        <Button style={styles.button} raised title="Sign Up" />
+        <Button style={styles.button} raised title="Sign Up" onPress={register} />
     </View>
   );
 }
@@ -23,17 +53,9 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-  },
-  input: {
-    marginTop: 10,
-    width: 300,
-    height: 40,
-    borderColor: 'green',
-    borderWidth: 1,
-  },
+  container: {},
+  input: {},
   button: {
-    color: 'red',
-  }
+    backgroundColor: 'red',
+  },
 });
