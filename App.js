@@ -10,10 +10,16 @@ import Home from './screens/Home';
 
 const Stack = createStackNavigator();
 
+const globalNavigationPane = {
+  headerStyle: {backgroundColor: 'cadetblue'},
+  headerTitleStyle: {color:'white'},
+  headerTintColor: 'white',
+};
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={globalNavigationPane}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Sign Up" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />

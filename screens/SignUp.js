@@ -14,7 +14,7 @@ const SignUp = () => {
     auth
      .createUserWithEmailAndPassword(email, password)
      .then(authUser => {
-       authUser.user.updateProfile({
+       authUser.user.updateProfileProfile({
          displayName: name,
          photoURL: imageUrl || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
        })
@@ -24,8 +24,8 @@ const SignUp = () => {
 
   return(
     <View style={styles.container}>
-      <Text h2 style={{color: 'cadetblue', paddingLeft: 60}}>
-        Sign Up Here!
+      <Text h2 style={{color: 'cadetblue', paddingLeft: 25}}>
+        Create An Account!
       </Text>
       <View style={styles.main}>
         <Input placeholder="Username" value={name} autofocus type="text" onChangeText={(text) => setName(text)} style={styles.input} />

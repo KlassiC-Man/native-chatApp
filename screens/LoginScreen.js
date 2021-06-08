@@ -11,6 +11,7 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      console.log(authUser);
       if (authUser) {
         navigation.replace("Home");
       }
@@ -33,6 +34,12 @@ const LoginScreen = ({ navigation }) => {
     }
   }
 
+  const login = () => {
+    auth
+     .signInWithEmailAndPassword(email, password)
+     .catch((error) => alert(error))
+  }
+
   return (
     <View style={styles.container}>
         <Text h2 style={{color: 'cadetblue'}}>
@@ -43,7 +50,7 @@ const LoginScreen = ({ navigation }) => {
         <Input style={styles.input} value={email} type="email" placeholder='E-Mail' onChangeText={(text) => setEmail(text)} />
         <Input style={styles.input} value={password} type="password" secureTextEntry placeholder='Password' onChangeText={(text) => setPassword(text)} />
         <View style={{margin: 30}} />
-        <Button title="Login" />
+        <Button title="Login" onPress={login} />
         <View style={{margin: 10}} />
         <Button style={styles.button} raised title="Sign Up" onPress={register} />
     </View>
