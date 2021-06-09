@@ -7,6 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SignUp from './screens/SignUp';
 import Home from './screens/Home';
+import AddNewChat from './screens/AddNewChat';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Sign Up" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="AddNewChat" component={AddNewChat} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -14,7 +14,7 @@ const SignUp = () => {
     auth
      .createUserWithEmailAndPassword(email, password)
      .then(authUser => {
-       authUser.user.updateProfileProfile({
+       authUser.user.updateProfile({
          displayName: name,
          photoURL: imageUrl || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
        })
@@ -31,7 +31,7 @@ const SignUp = () => {
         <Input placeholder="Username" value={name} autofocus type="text" onChangeText={(text) => setName(text)} style={styles.input} />
         <Input placeholder="Email" value={email} type="email" onChangeText={(text) => setEmail(text)} style={styles.input} />
         <Input placeholder="Password" value={password} type="password" secureTextEntry onChangeText={(text) => setPassword(text)} style={styles.input} />
-        <Input placeholder="Image URL For Profile" type="text" value={imageUrl} onChangeText={(text) => setImageUrl(text)} style={styles.input} />
+        <Input placeholder="Image URL For Profile (Optional), Only Links With .jpg, .jpeg or .png At The End" type="text" value={imageUrl} onChangeText={(text) => setImageUrl(text)} style={styles.input} />
       </View>
       <Button title="Sign Up" onPress={register} />
     </View>
