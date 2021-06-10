@@ -28,7 +28,7 @@ const AddNewChat = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Input placeholder='Enter Chat Name' value={input} onChangeText={(text) => setInput(text)} leftIcon={
+      <Input placeholder='Enter Chat Name' style={{color: 'white'}} value={input} onChangeText={(text) => setInput(text)} leftIcon={
         <MaterialIcons name="chat" size={24} color='white' />
       } />
       <Button title='Create A Chat' onPress={createNewChat} style={styles.button} />
@@ -40,7 +40,7 @@ export default AddNewChat;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: '#282828',
     padding: 30,
     height: '100%',
   },

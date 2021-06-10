@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import { StyleSheet, View} from 'react-native';
 import {Button, Text, Input} from 'react-native-elements';
 import {auth} from '../firebase';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,6 +22,12 @@ const SignUp = () => {
      .catch(error => alert(error.message))
   }
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitleAlign: 'center',
+    })
+  },[navigation])
+
   return(
     <View style={styles.container}>
       <Text h2 style={{color: 'cadetblue', paddingLeft: 25}}>
@@ -31,7 +37,7 @@ const SignUp = () => {
         <Input placeholder="Username" value={name} autofocus type="text" onChangeText={(text) => setName(text)} style={styles.input} />
         <Input placeholder="Email" value={email} type="email" onChangeText={(text) => setEmail(text)} style={styles.input} />
         <Input placeholder="Password" value={password} type="password" secureTextEntry onChangeText={(text) => setPassword(text)} style={styles.input} />
-        <Input placeholder="Image URL For Profile (Optional), Only Links With .jpg, .jpeg or .png At The End" type="text" value={imageUrl} onChangeText={(text) => setImageUrl(text)} style={styles.input} />
+        <Input placeholder="Profile Picture Link .jpeg, .png, .jpg at End" type="text" value={imageUrl} onChangeText={(text) => setImageUrl(text)} style={styles.input} />
       </View>
       <Button title="Sign Up" onPress={register} />
     </View>
@@ -44,8 +50,14 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'center',
+    backgroundColor: '#282828',
+    height: '100%',
   },
   main: {
-    paddingTop: 25,
+    paddingTop: 20,
+    marginBottom: 20
   },
+  input: {
+    color:'white',
+  }
 });

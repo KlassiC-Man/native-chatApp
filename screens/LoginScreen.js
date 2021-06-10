@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {StyleSheet, TextInput, View, Image} from 'react-native';
 import {Input, Button, Text} from 'react-native-elements';
 import {auth} from '../firebase';
@@ -34,6 +34,12 @@ const LoginScreen = ({ navigation }) => {
     }
   }
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitleAlign: 'center'
+    })
+  }, [navigation])
+
   const login = () => {
     auth
      .signInWithEmailAndPassword(email, password)
@@ -42,8 +48,8 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-        <Text h2 style={{color: 'cadetblue'}}>
-          Welcome To Connect!
+        <Text h2 style={{color: 'cadetblue', paddingLeft: 20}}>
+          It's Time To Connect
         </Text>
         <View style={{paddingTop: 20}} />
         <Input style={styles.input} value={name} type="text" autofocus placeholder='Username' onChangeText={(text) => setName(text)} />
@@ -52,7 +58,8 @@ const LoginScreen = ({ navigation }) => {
         <View style={{margin: 30}} />
         <Button title="Login" onPress={login} />
         <View style={{margin: 10}} />
-        <Button style={styles.button} raised title="Sign Up" onPress={register} />
+        <Button raised title="Sign Up" onPress={register} type='outline' />
+        <View style={{height: '100%'}} />
     </View>
   );
 }
@@ -60,9 +67,10 @@ const LoginScreen = ({ navigation }) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  container: {},
-  input: {},
-  button: {
-    backgroundColor: 'red',
+  container: {
+    backgroundColor: '#282828'
+  },
+  input: {
+    color: 'white'
   },
 });

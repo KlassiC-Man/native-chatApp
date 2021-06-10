@@ -8,6 +8,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AntDesign, SimpleLineIcons} from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {containerStyle} from 'react-native-elements';
 
 
 const Home = ({navigation}) => {
@@ -53,15 +54,26 @@ const Home = ({navigation}) => {
     });
   }, [navigation])
 
+  const enterChat = (id, chatName) => {
+      navigation.navigate('Chat', {
+        id,
+        chatName,
+      });
+  };
+
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <View style={styles.container}>
+      <ScrollView style={{backgroundColor: '#282828', width: '100%', height: '100%'}}>
           {chats.map(({id, data: {chatName}}) => (
-            <CustomListItem key={id} id={id} chatName={chatName} />
+            <CustomListItem key={id} id={id} chatName={chatName} style={{color: '#282828'}} enterChat={enterChat} />
           ))}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+  container: {},
+})
