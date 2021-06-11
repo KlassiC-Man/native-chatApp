@@ -3,6 +3,7 @@ import {StyleSheet, TextInput, View, Image} from 'react-native';
 import {Input, Button, Text} from 'react-native-elements';
 import {auth} from '../firebase';
 
+
 const LoginScreen = ({ navigation }) => {
 
   const [name, setName] = useState('');
