@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {ListItem, Avatar} from 'react-native-elements';
 import {db, auth} from '../firebase';
+import * as firebase from 'firebase';
 
 const CustomListItem = ({ id, chatName, enterChat }) => {
 
   const [chatMessages, setChatMessages] = useState([]);
+
+  const user = firebase.auth().currentUser;
 
   useEffect(() => {
     const unsubscribe = db.collection('chats').doc(id).collection('messages').orderBy('timestamp', 'desc').onSnapshot(snapshot => (
@@ -17,6 +20,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
   function tell() {
     alert('Thats a chat!')
   };
+ 
 
   return(
     <ListItem key={id} bottomDivider onPress={() => enterChat(id, chatName)} onLongPress={tell} containerStyle={{backgroundColor: '#282828'}}>

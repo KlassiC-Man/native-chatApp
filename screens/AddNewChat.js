@@ -5,15 +5,22 @@ import {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MaterialIcons } from '@expo/vector-icons';
 import {db, auth} from '../firebase';
+import * as firebase from 'firebase';
 
 const AddNewChat = ({navigation}) => {
 
+  const user = firebase.auth().currentUser;
+
+  //The use states
   const [input, setInput] = useState('');
+  const [nameInput, setNameInput] = useState('');
 
   async function createNewChat() {
     await db
-     .collection('chats').add({
-       chatName: input,
+     .collection('chats').doc(nameInput).set({
+       chatName: nameInput,
+       chatter0: user.email,
+       chatter1: input,
      }).then(() => {
        navigation.goBack();
      }).catch(error => alert(error))
@@ -28,9 +35,10 @@ const AddNewChat = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Input placeholder='Enter Chat Name' style={{color: 'white'}} value={input} onChangeText={(text) => setInput(text)} leftIcon={
+      <Input placeholder='Enter E-Mail ID of the Person' style={{color: 'white'}} value={input} onChangeText={(text) => setInput(text)} leftIcon={
         <MaterialIcons name="chat" size={24} color='white' />
       } />
+      <Input placeholder='Enter Name for Chat' style={{color: '#fff'}} value={nameInput} onChangeText={(text) => setNameInput(text)} />
       <Button title='Create A Chat' onPress={createNewChat} style={styles.button} />
     </View>
   );
