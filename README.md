@@ -3,7 +3,7 @@
 ## Intro
 ##### native-chatApp has been made purely with JavaScript and the React-Native framework of JS.
 ##### It has a google firebase connection. Login with email and password is available.
-##### The way to started with this is fork this repo and then use `git clone https://github.com/KlassiC-Man/native-chatApp.git` to get started, next use `cd chatApp` and then start with the coding part!
+##### The way to get started with this is fork this repo and then use `git clone https://github.com/KlassiC-Man/native-chatApp.git` to get started, next use `cd chatApp` and then start with the coding part!
 ##### NPM or YARN should be installed along with nodejs so as to allow you to run the code.
 
 ## Running the Code
