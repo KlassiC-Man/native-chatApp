@@ -10,6 +10,7 @@ import Home from './screens/Home';
 import AddNewChat from './screens/AddNewChat';
 import Chat from './screens/Chat';
 import ForgotPassword from './screens/ForgotPassword';
+import ChangePfp from './screens/ChangePfp';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ export default function App() {
         <Stack.Screen name="AddNewChat" component={AddNewChat} />
         <Stack.Screen name='Chat' component={Chat} />
         <Stack.Screen name='ForgotPassword' component={ForgotPassword} />
+        <Stack.Screen name='ChangePfp' component={ChangePfp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

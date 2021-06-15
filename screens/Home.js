@@ -47,7 +47,7 @@ const Home = ({navigation}) => {
       headerRight: () => (
         <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 80, marginRight: 20}}>
           <TouchableOpacity>
-            <AntDesign name='camerao' size={24} color='black' />
+            <AntDesign onPress={() => navigation.navigate('ChangePfp')} name='camerao' size={24} color='black' />
           </TouchableOpacity>
           <TouchableOpacity>
             <MaterialCommunityIcons onPress={() => navigation.navigate('AddNewChat')} name='pencil-plus' size={24} color="black" />
