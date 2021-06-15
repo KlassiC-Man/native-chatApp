@@ -47,6 +47,10 @@ const LoginScreen = ({ navigation }) => {
      .catch((error) => alert(error))
   }
 
+  function forgotPassword(){
+    navigation.navigate('ForgotPassword');
+  }
+
   return (
     <View style={styles.container}>
         <Text h2 style={{color: 'cadetblue', paddingLeft: 20}}>
@@ -60,6 +64,7 @@ const LoginScreen = ({ navigation }) => {
         <Button title="Login" onPress={login} />
         <View style={{margin: 10}} />
         <Button raised title="Sign Up" onPress={register} type='outline' />
+        <Button type='clear' title='Forgot Password' raised onPress={forgotPassword} />
         <View style={{height: '100%'}} />
     </View>
   );
