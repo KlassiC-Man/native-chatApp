@@ -60,11 +60,13 @@ function Chat({navigation, route}) {
 
   function showEmojiMenu() {
     return (
+      //let the user select the emoji and then add it to the message!
       <EmojiSelector onEmojiSelected={emoji => setInput(input + emoji)} category={Categories.symbols} />
     )
   }
 
   return(
+    //SafeAreaView for iphones notch!
     <SafeAreaView style={styles.container}>
       <View style={styles.container__main} behavior='height'>
         <>
