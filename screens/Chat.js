@@ -6,6 +6,11 @@ import {AntDesign} from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import * as firebase from 'firebase';
 import {db, auth} from '../firebase';
+import {Editor} from '@tinymce/tinymce-react';
+import { Picker } from 'emoji-mart';
+import EmojiSelector, {Categories} from 'react-native-emoji-selector';
+import { Entypo } from '@expo/vector-icons';
+
 
 function Chat({navigation, route}) {
 
@@ -53,6 +58,12 @@ function Chat({navigation, route}) {
     setInput('');
   };
 
+  function showEmojiMenu() {
+    return (
+      <EmojiSelector onEmojiSelected={emoji => setInput(input + emoji)} category={Categories.symbols} />
+    )
+  }
+
   return(
     <SafeAreaView style={styles.container}>
       <View style={styles.container__main} behavior='height'>
@@ -74,6 +85,10 @@ function Chat({navigation, route}) {
             ))}
           </ScrollView>
           <View style={styles.mainArea}>
+            <Editor  />
+            <TouchableOpacity onPress={showEmojiMenu}>
+              <Entypo name="emoji-happy" size={24} color="black" />
+            </TouchableOpacity>
             <TextInput placeholder='Type The Message' placeholderTextColor='grey' style={styles.textInput} value={input} onChangeText={(text) => setInput(text)} />
             <TouchableOpacity onPress={sendMsg} disabled={!input}>
               <Feather name='send' size={24} color='cadetblue' />
@@ -148,6 +163,7 @@ const styles = StyleSheet.create({
     height: 40,
     flex: 1,
     marginRight: 15,
+    marginLeft: 13,
     borderColor: "transparent",
     backgroundColor: '#ECECEC',
     borderWidth: 1,
